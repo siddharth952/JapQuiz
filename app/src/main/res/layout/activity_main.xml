@@ -7,14 +7,14 @@
     android:orientation="vertical"
     android:background="@drawable/background_app"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="com.halfpolygon.quizzer.MainActivity">
 
     <TextView
         android:id="@+id/textScreen"
         android:layout_marginTop="40sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Learn Hiragana!"
+        android:text="Learn Kanji!"
         android:textSize="22sp"
         android:layout_gravity="center"
         android:textColor="#FFF" />
@@ -34,10 +34,12 @@
             android:layout_gravity="center"
             android:layout_marginTop="40dp"
             android:lineSpacingExtra="6dp"
-            android:text="To say no in Japanese"
+            android:text="Commercial center on the island of Honshu 大阪府"
             android:textAlignment="center"
             android:textColor="#332FA2"
             android:textSize="22sp" />
+
+
     </LinearLayout>
 
     <EditText
@@ -78,8 +80,16 @@
 
     </LinearLayout>
 
+    <ProgressBar
+        android:id="@+id/my_progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="10" />
+
 
 </LinearLayout>
-
 
 

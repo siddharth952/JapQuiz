@@ -1,4 +1,4 @@
-package com.example.quizzer;
+package com.halfpolygon.quizzer;
 
 import android.content.Context;
 

@@ -1,17 +1,19 @@
-package com.example.quizzer;
+package com.halfpolygon.quizzer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
+import com.example.quizzer.R;
 
 import java.util.Random;
 
@@ -20,15 +22,20 @@ public class MainActivity extends AppCompatActivity {
 
     private int pressCounter = 0;
     private int maxPressCounter = 0;
-    private String[] keys = {"い","え","は","も","し"};
-    private String textAnswer = "いいえ";
+    private String[] keys = {"い","さ","か","ふ","お"};
+    private String textAnswer = "おおさかふ";
     TextView textScreen, textQuestion, textTitle;
+    Animation smallbigforth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Animation
+        smallbigforth = AnimationUtils.loadAnimation(this,R.anim.smallbigforth);
+
 
         keys = shuffleArray(keys);
 
@@ -37,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        maxPressCounter = 4;
+        maxPressCounter = 6;
 
     }
 
@@ -98,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                         editText.setText(editText.getText().toString() + text);
-//                        textView.startAnimation(bigsmallforth);
+                        textView.startAnimation(smallbigforth);
                         textView.animate().alpha(0).setDuration(300);
                         pressCounter++;
                         textTitle.setText("Characters left:"+(textAnswer.length()-pressCounter));
@@ -128,7 +135,12 @@ public class MainActivity extends AppCompatActivity {
         LinearLayout linearLayout = findViewById(R.id.layoutParent);
 
         if (editText.getText().toString().equals(textAnswer)){
-            Toast.makeText(MainActivity.this, "You got it!", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "You got it!", Toast.LENGTH_SHORT).show();
+
+            //Next Activity
+            Intent a = new Intent(MainActivity.this,SecondScreen.class);
+            startActivity(a);
+
             //Reset it
             editText.setText("");
         }else{

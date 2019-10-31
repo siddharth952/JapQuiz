@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background_app"
+    android:layout_height="match_parent"
+    tools:context="com.halfpolygon.quizzer.MainActivity">
+
+    <TextView
+        android:id="@+id/textScreen"
+        android:layout_marginTop="40sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Menu!"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:textColor="#FFF" />
+
+    <ImageView
+        android:src="@drawable/icboss"
+        android:layout_gravity="center"
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/textQuestion"
+        android:layout_marginTop="40sp"
+        android:gravity="center"
+        android:layout_width="210sp"
+        android:layout_height="wrap_content"
+        android:text="Ready for another round"
+        android:textSize="28sp"
+        android:layout_gravity="center"
+        android:textColor="#FFF" />
+
+    <Button
+        android:id="@+id/textTitle"
+        android:layout_marginTop="80dp"
+        android:layout_gravity="center"
+        android:text="Continue"
+        android:textAllCaps="false"
+        android:textSize="28sp"
+        android:background="@drawable/bgbtn"
+        android:layout_width="280sp"
+        android:layout_height="70sp"/>
+
+    <TextView
+        android:id="@+id/textBtn"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
+        android:layout_width="210sp"
+        android:layout_height="wrap_content"
+        android:text="Back to Home"
+        android:textSize="22sp"
+        android:layout_gravity="center"
+        android:textColor="#FFF" />
+
+
+
+
+</LinearLayout>
+
+
