@@ -10,6 +10,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,9 +24,13 @@ public class MainActivity extends AppCompatActivity {
     private int pressCounter = 0;
     private int maxPressCounter = 0;
     private String[] keys = {"い","さ","か","ふ","お"};
-    private String textAnswer = "おおさかふ";
+    private String[] textAnswers = {"おおさかふ","いい","ささ"};
+    private int questionNumber = 0;
+
+    //UI
     TextView textScreen, textQuestion, textTitle;
     Animation smallbigforth;
+    ProgressBar myProgressBar;
 
 
     @Override
@@ -93,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setTypeface(typeface);
 
         //For Char Counter
-        textTitle.setText("Characters left:"+textAnswer.length());
+        textTitle.setText("Characters left:"+textAnswers[questionNumber].length());
 
         textView.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -108,9 +113,9 @@ public class MainActivity extends AppCompatActivity {
                         textView.startAnimation(smallbigforth);
                         textView.animate().alpha(0).setDuration(300);
                         pressCounter++;
-                        textTitle.setText("Characters left:"+(textAnswer.length()-pressCounter));
+                        textTitle.setText("Characters left:"+(textAnswers[questionNumber].length()-pressCounter));
 
-                        if(pressCounter == textAnswer.length())
+                        if(pressCounter == textAnswers[questionNumber].length())
                             doValidate();
 
                         if(pressCounter == maxPressCounter){
@@ -133,13 +138,18 @@ public class MainActivity extends AppCompatActivity {
 
         EditText editText = findViewById(R.id.editText);
         LinearLayout linearLayout = findViewById(R.id.layoutParent);
+        ProgressBar myProgressBar = findViewById(R.id.my_progressBar);
 
-        if (editText.getText().toString().equals(textAnswer)){
-            //Toast.makeText(MainActivity.this, "You got it!", Toast.LENGTH_SHORT).show();
+        if (editText.getText().toString().equals(textAnswers[questionNumber])){
+            Toast.makeText(MainActivity.this, "You got it!", Toast.LENGTH_SHORT).show();
+            questionNumber++;
+            myProgressBar.setProgress(questionNumber+1);
 
+            if(questionNumber > textAnswers.length ){
             //Next Activity
             Intent a = new Intent(MainActivity.this,SecondScreen.class);
             startActivity(a);
+            }
 
             //Reset it
             editText.setText("");

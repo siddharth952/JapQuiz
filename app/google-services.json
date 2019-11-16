@@ -8,6 +8,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:194233751523:android:f6b660c1ff73ab3c5c32d6",
+        "android_client_info": {
+          "package_name": "com.example.quizzer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "194233751523-lejj8bpqfbgkrb29ppml3macgchcnme4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.quizzer",
+            "certificate_hash": "890855b8f02202d1d6dd991467368d60ad5aa93a"
+          }
+        },
+        {
+          "client_id": "194233751523-m30ajro7hmk2ce83vc24po4cpco4a0gf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAVfMzsnnFbC6wjiWR0ou7FUZ-2-UwlwdM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "194233751523-m30ajro7hmk2ce83vc24po4cpco4a0gf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:194233751523:android:eb9b57def17829105c32d6",
         "android_client_info": {
           "package_name": "com.halfpolygon.quizzer"
