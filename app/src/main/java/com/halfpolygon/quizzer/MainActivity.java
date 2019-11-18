@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -18,13 +19,15 @@ import com.example.quizzer.R;
 
 import java.util.Random;
 
+
 public class MainActivity extends AppCompatActivity {
 
 
+    private static final String TAG = "MainActivity";
     private int pressCounter = 0;
     private int maxPressCounter = 0;
-    private String[] keys = {"い","さ","か","ふ","お"};
-    private String[] textAnswers = {"おおさかふ","いい","ささ"};
+    private String[] keys;
+    private String[] textAnswers = {"おおさかふ","い","ふ"};
     private int questionNumber = 0;
 
     //UI
@@ -41,13 +44,12 @@ public class MainActivity extends AppCompatActivity {
         //Animation
         smallbigforth = AnimationUtils.loadAnimation(this,R.anim.smallbigforth);
 
+        //gen keys from question at that position
+        generateKeys(textAnswers[questionNumber]);
 
         keys = shuffleArray(keys);
 
-        for(String key: keys){
-            addView((LinearLayout) findViewById(R.id.layoutParent), key,((EditText) findViewById(R.id.editText)));
-
-        }
+        updateView();
 
         maxPressCounter = 6;
 
@@ -61,6 +63,7 @@ public class MainActivity extends AppCompatActivity {
             arr[index] = arr[i];
             arr[i] = a;
         }
+
         return arr;
     }
 
@@ -100,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
         //For Char Counter
         textTitle.setText("Characters left:"+textAnswers[questionNumber].length());
 
+        //Update keys
+        generateKeys(textAnswers[questionNumber]);
+
         textView.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){
@@ -111,7 +117,7 @@ public class MainActivity extends AppCompatActivity {
 
                         editText.setText(editText.getText().toString() + text);
                         textView.startAnimation(smallbigforth);
-                        textView.animate().alpha(0).setDuration(300);
+                        textView.animate().alpha(0.5f).setDuration(300);
                         pressCounter++;
                         textTitle.setText("Characters left:"+(textAnswers[questionNumber].length()-pressCounter));
 
@@ -143,14 +149,16 @@ public class MainActivity extends AppCompatActivity {
         if (editText.getText().toString().equals(textAnswers[questionNumber])){
             Toast.makeText(MainActivity.this, "You got it!", Toast.LENGTH_SHORT).show();
             questionNumber++;
-            myProgressBar.setProgress(questionNumber+1);
 
-            if(questionNumber > textAnswers.length ){
+            if(questionNumber == textAnswers.length){
+
             //Next Activity
             Intent a = new Intent(MainActivity.this,SecondScreen.class);
             startActivity(a);
             }
 
+            myProgressBar.setProgress(questionNumber);
+            updateView();
             //Reset it
             editText.setText("");
         }else{
@@ -161,6 +169,24 @@ public class MainActivity extends AppCompatActivity {
         linearLayout.removeAllViews();
         for (String key: keys){
             addView(linearLayout,key,editText);
+        }
+    }
+
+
+    void generateKeys(String char_question){
+
+        //MARK:Split the string into corresponding chars without rep.
+       keys = char_question.split("(?!^)");
+        Log.d(TAG, "generateKeys() returned: " + keys[0]);
+
+        return;
+    }
+
+    void updateView(){
+
+        for(String key: keys){
+            addView((LinearLayout) findViewById(R.id.layoutParent), key,((EditText) findViewById(R.id.editText)));
+
         }
     }
 
